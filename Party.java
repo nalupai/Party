@@ -10,21 +10,28 @@ public class Party {
         Guest guest = new Guest();
         guest.name = name;
         System.out.printf("%s\n%s joined the Party!\n\n", guest.skin, guest.name);
-        boolean wantDance = true;
-        while (wantDance) {
-            System.out.printf("Wanna dance %s? 1 - yes, 0 - no\n", guest.name);
+
+        boolean party = true;
+        while(party) {
+            System.out.printf("1. Dance with %s\n", guest.name);
+            System.out.println("2. How many times did you dance?");
+            System.out.printf("0. Bye, %s!\n", guest.name);
             int option = scanner.nextInt();
             switch (option) {
                 case 1:
                     if (guest.energy > 0) {
                         guest.energy = Guest.dance(guest.energy);
+                        guest.danceCounter++;
                     } else {
                         System.out.printf("%s is away from the dance floor\n", guest.name);
-                        wantDance = false;
+                        party = false;
                     }
                     break;
+                case 2:
+                    System.out.println(guest.danceCounter);
+                    break;
                 case 0:
-                    wantDance = false;
+                    party = false;
                     break;
                 default:
                     System.out.println("something went wrong\n");
@@ -48,6 +55,7 @@ class Guest {
           /             \\  
           """;
     int energy = 25;
+    int danceCounter = 0;
 
     static  int danceEnergyDrop(int energy) {
         
@@ -58,11 +66,11 @@ class Guest {
     static String dancePowerMessage(int energy) {
 
         if (energy >= 20) {
-            return "what a great time! let's dance!\n";
+            return "what a great time! let's dance!\n(\\|) ._. (|/)\n";
         } else if (energy >= 10) {
-            return "dance! dance!\n";
+            return "dance! dance!\n(|/) ._. (\\|)\n";
         } else {
-            return "whoah! maybe a drink after this dance?\n";
+            return "whoah! maybe a drink after this dance?\n(||) ._. (||)\n";
         }
     }
 
