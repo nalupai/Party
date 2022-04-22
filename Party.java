@@ -21,14 +21,14 @@ public class Party {
                 case 1:
                     if (guest.energy > 0) {
                         guest.energy = Guest.dance(guest.energy);
-                        guest.danceCounter++;
+                        guest.incrementValueOfDanceCounter();
                     } else {
                         System.out.printf("%s is away from the dance floor\n", guest.name);
                         party = false;
                     }
                     break;
                 case 2:
-                    System.out.println(guest.danceCounter);
+                    System.out.println(guest.giveValueOfDanceCounter());
                     break;
                 case 0:
                     party = false;
@@ -55,7 +55,18 @@ class Guest {
           /             \\  
           """;
     int energy = 25;
-    int danceCounter = 0;
+    
+    private int danceCounter = 0;
+
+    int giveValueOfDanceCounter() {
+
+        return danceCounter;
+    }
+
+    int incrementValueOfDanceCounter() {
+
+        return danceCounter++;
+    }
 
     static  int danceEnergyDrop(int energy) {
         
